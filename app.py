@@ -1,6 +1,7 @@
 from flask import *
 import sqlite3, hashlib, os
 from werkzeug.utils import secure_filename
+fron DB import conn
     
 app = Flask(__name__)
 app.secret_key = 'random string'

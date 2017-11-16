@@ -1,0 +1,41 @@
+
+{% extends "header.html" %}
+{% block body %}	
+ <div class="container" style="padding-top:20px;">
+<div class="row">
+ <div class="col-md-9 personal-info">
+  <form class="form-horizontal" role="form">
+        <div class="form-group">
+        <label class="col-lg-3 control-label">Email:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="email" name="email">
+            </div><!-- closing col-lg-8-->
+        </div><!-- closing form-group-->
+  <form class="form-horizontal" role="form">
+        <div class="form-group">
+        <label class="col-lg-3 control-label">Password:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="Password" name="password">
+            </div><!-- closing col-lg-8-->
+        </div><!-- closing form-group-->
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input">
+      Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign In</button>
+  {% with messages = get_flashed_messages() %}
+          {% if messages %}         
+            {% for i in messages %}
+                {{i}}
+            {% endfor %} 
+          {% endif %}
+  {% endwith %}
+</form>
+</div>
+</div>
+    <a href="{{url_for('register')}}">Sign up</a>
+   </div>                     
+    
+{% endblock %}

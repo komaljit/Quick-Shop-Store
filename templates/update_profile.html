@@ -1,0 +1,99 @@
+{% extends "header.html"%}
+{% block body %}
+<div class="container" style="padding-top:20px;">
+     <h1>Edit Profile</h1>
+     <hr>
+</form method='POST' lass="form-horizontal" role="form">
+     <div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+       <div class="text-center">
+         <img src={{url_for('static',filename=user_info[12])}}>
+          <h6>Upload a diiferent picture</h6>
+          <input type="file" class="form-control" name="pic"></div>
+         </div><!-- end of left column-->
+     <!-- right coulmn for enteries --> 
+    <div class="col-md-9 personal-info">
+       
+        <div><h3>Personal Info</h3></div>
+    
+        <div class="form-group">
+        <label class="col-lg-3 control-label">First name:</label>
+             <div class="col-lg-8">
+               <input class="form-control" type="text" placeholder={{user_info[3]}} name="first name">
+            </div><!-- closing col-lg-8-->
+         </div><!-- closing form-group-->
+         <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+             <div class="col-lg-8">
+                <input class="form-control" type="text" placeholder={{user_info[4]}} name="last name">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->   
+      
+      <div class="form-group">
+          <label class="col-lg-3 control-label" >Email:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder={{user_info[2]}} name="email">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+       <div class="form-group">
+          <label class="col-lg-3 control-label">Address 1:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder={{user_info[5]}} name="address1">
+            </div><!-- cosing col-lg-8-->
+        </div><!-- closing form-group-->
+       <div class="form-group">
+          <label class="col-lg-3 control-label">Address2:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder={{user_info[6]}} name="address2">
+            </div><!-- cosing col-lg-8-->
+        </div><!-- closing form-group-->
+      <div class="form-group">
+          <label class="col-lg-3 control-label">Phone:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder={{user_info[11]}} name="phone">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label class="col-lg-3 control-label">City:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder={{user_info[8]}} name="city">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Zipcode:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text"name="zipcode" placeholder={{user_info[7]}}>
+            </div><!-- cosing col-lg-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label class="col-lg-3 control-label">State:</label>
+             <div class="col-lg-8">
+        <input class="form-control" type="text" placeholder={{user_info[9]}} name="state">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Country:</label>
+             <div class="col-lg-8">
+        <input class="form-control" type="text" placeholder={{user_info[10]}} name="country">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        
+        <div class="form-group">
+          <label class="col-lg-3 control-label"></label>
+          <div class="col-lg-8"> 
+          <input type="submit" class="btn btn-primary" value="Save">
+          <input type="reset" class="btn btn-default" value="Cancel">
+          </div>
+          </div>
+
+      
+
+        </div> <!-- closing right column col-md-9 -->
+  </div> <!-- closing row -->
+
+ </form> <!-- closing form -->
+</div><!-- closing container-->
+
+
+{% endblock %}

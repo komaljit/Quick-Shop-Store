@@ -1,0 +1,24 @@
+{% extends "header.html" %}
+{% block body %}
+
+<div class="container" style="padding-top:20px;">
+   <b>Category: {{category}}</b> 
+{% for i in products %}
+<hr></he>
+ <div class="row" >
+
+        <div class="col-md-7">
+          <a href="{{url_for('product')}}?product={{i[1]}}"><img src={{url_for('static',filename=i[4])}} style="width:200px;height:200px;"><br></br>
+       
+ 
+      </div> <!-- closing col-md-7-->
+       <div class="col-md-3">
+         {{i[1]}}</a><br></br>
+          Price: {{i[2]}}$
+         
+        </div> <!-- closing col-md-3-->
+         <hr></hr>
+</div>
+              {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "header.html"%}
+{% block body %}
+<div class="container">
+     <h1>Edit Profile</h1>
+     <hr>
+<form method='POST' class="from-horizontal"enctype=multipart/form-data> 
+     <div class="row">      
+      <!-- left column -->
+      <div class="col-md-3">
+      
+       <div class="text-center">
+         <img src={{url_for('static',filename='download.jpg')}}>
+          <h6>Upload a diiferent picture</h6>
+          <input type="file" class="form-control" name="pic">
+          
+        </div>
+               
+ </div><!-- end of left column-->
+ 
+     <!-- right coulmn for enteries --> 
+    <div class="col-md-9 personal-info">
+       <h3>Personal Info</h3>
+      
+        <div class="form-group">
+        <label class="col-lg-3 control-label">First name:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="First name" name="firstName">
+            </div><!-- closing col-lg-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="Last name" name="lastName">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->   
+      
+      <div class="form-group">
+          <label cass="col-lg-3 control-label" >Email:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="Email" name="email">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+       <div class="form-group">
+          <label cass="col-lg-3 control-label">Address 1:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="address1" name="address1">
+            </div><!-- cosing col-lg-8-->
+        </div><!-- closing form-group-->
+       <div class="form-group">
+          <label cass="col-lg-3 control-label">Address2:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="address2" name="address2">
+            </div><!-- cosing col-lg-8-->
+        </div><!-- closing form-group-->
+      <div class="form-group">
+          <label cass="col-lg-3 control-label">Phone:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="phone" name="phone">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label cass="col-lg-3 control-label">City:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" placeholder="City" name="city">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label cass="col-lg-3 control-label">Zipcode:</label>
+             <div class="col-lg-8">
+       <input class="form-control" type="text" name="zipcode" placeholder="Zipcode">
+            </div><!-- cosing col-lg-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label cass="col-lg-3 control-label">State:</label>
+             <div class="col-lg-8">
+        <input class="form-control" type="text" placeholder="State" name="state">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label cass="col-lg-3 control-label">Country:</label>
+             <div class="col-lg-8">
+        <input class="form-control" type="text" placeholder="Country" name="country">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label cass="col-lg-3 control-label">Password:</label>
+             <div class="col-lg-8">
+        <input class="form-control" type="password" placeholder="password" name="password">
+            </div><!-- cosing col-lg-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label cass="col-lg-3 control-label">Confirm Password:</label>
+             <div class="col-lg-8">
+        <input class="form-control" type="password" placeholder="password" name="password2">
+            </div><!-- cosing col-md-8-->
+        </div><!-- closing form-group-->
+        <div class="form-group">
+          <label class="col-lg-3 control-label"></label>
+          <div class="col-lg-8"> 
+          <input type="submit" class="btn btn-primary" value="Register">
+          <input type="reset" class="btn btn-default" value="Cancel">
+          </div>
+          </div>
+      
+
+        </div> <!-- closing right column col-md-9 -->
+   </div> <!-- closing row -->
+ </form><!-- closing form -->
+</div><!-- closing container-->
+
+
+{% endblock %}

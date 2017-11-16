@@ -1,0 +1,52 @@
+{% extends "header.html"%}
+
+{% block body %}
+<div class="container" style="padding-top:20px;padding-bottom:30px;">
+ <div class="row">
+   <div class="col-sm-6">
+      <img src={{url_for('static',filename=product_info[4])}} style="width:200px;height:200px;"><br></br> 
+      Name: {{product_info[1]}}<br>    
+     price: ${{product_info[2]}}<br>
+       Description:
+       {{product_info[3]}}
+   </div>
+ <div class="col-sm-2">
+  <form method="POST">
+     <input type=submit class="btn btn-primary" id="cart_btn" value="ADD TO CART" onclick=added()>
+   <br></br>
+    <div class="input-group input-group-sm" style="width:150px;text-align:center;">
+     <p style="margin-right:10px;">Quantity</p>
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" id="Decrement" onclick=change(this)>-</button>
+      </span>
+      <input type="text" class="form-control" id="quantity" value=1 name="quantity">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" id="Increment" onclick=change(this)>+</button>
+      </span>
+    </div>
+    </form> 
+   </div>
+</div>
+<script>
+  function added(){
+  document.getElementById("cart_btn").value = "Added";
+}
+</script>
+
+ <script>
+     function change(elem){
+          var c = elem.id;
+          var a = document.getElementById("quantity").value;
+          if(c == "Decrement"){         
+        document.getElementById("quantity").value = +a - 1 ; 
+      }
+       else{
+        document.getElementById("quantity").value = +a + 1 ; 
+      } 
+
+}
+    
+ </script>
+
+
+{% endblock %}

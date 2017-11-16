@@ -1,0 +1,10 @@
+{"1":["june 4, 1776","july 4,1776", "july 4,1786","oct 4,1776"]
+,"2":["50","52","54","35"]
+,"3":["California","Alaska and Hawaii","North carolina","ohio"]
+,"4":["The first 13 Colonies","The Original Colonies","The 13 Colonies","The Original 13 Colonies"]
+,"5":["Brack obama","Tom cruise","Donald trump","Hillary clinton"]
+,"6":["510","535","540","550"]
+,"7":["The Supreme Court","The high Court","The hi-fi Court","The Courtroom"]
+,"8":["10","3","5","7"]
+,"9":["Hugh Jackwomen","big Jackman","Hugh Jackman","small Jackman"]
+}

@@ -4,107 +4,48 @@
 	
   <div class="row">
 
-   <div class="col-md-7 ">
-    
+   <div class="col-md-7 ">    
 
-<div class="panel panel-default">
+    <div class="panel panel-default">
  
      <div class="panel-heading"><h4 >User Profile</h4></div>
- 
-      <div class="panel-body">
-       
- 
+      <div class="panel-body">     
         <div class="box box-info">
-        
-            
-         <div class="box-body">
-                   
-          <div class="col-sm-6">
-                    
+         <div class="box-body">               
+          <div class="col-sm-6">                
            <div  align="center">
           {% if user_info[12] %}           
-             <img alt="User Pic" src="{{url_for(user_info[12])}}" id="profile-image1" class="img-circle img-responsive"> 
-
-          
+             <img alt="User Pic" src="{{url_for('static',filename="user_info[12]")}}" id="profile-image1" class="img-circle img-responsive">         
            {% else %}
-             <img alt="User Pic" href="download.jpg" id="profile-image1" class="img-circle img-responsive">
+             <img alt="User Pic" src={{url_for('static',filename="download.jpg")}} id="profile-image1" class="img-circle img-responsive">
            {% endif %} 
          </div>                   
          </div>
- <br>
-         
-   
-   
-         <hr style="margin:2px 0 2px 0;">         
-
-            
-  
+         <br>          
+         <hr style="margin:2px 0 2px 0;">  
        <div class="col-sm-5 col-xs-6 tital " >First Name:</div>
-         <div class="col-sm-7 col-xs-6 ">{{user_info[3]}}</div>
-    
-    
-         <hr style="margin:2px 0 2px 0;">
-
-         
-<div class="col-sm-5 col-xs-6 tital " >Last Name:</div>
+         <div class="col-sm-7 col-xs-6 ">{{user_info[3]}}</div>    
+          <hr style="margin:2px 0 2px 0;">       
+         <div class="col-sm-5 col-xs-6 tital " >Last Name:</div>
          <div class="col-sm-7">{{user_info[4]}}</div>
  
-         <hr style="margin:2px 0 2px 0;">
-
-         
-<div class="col-sm-5 col-xs-6 tital " >Email:</div>
+         <hr style="margin:2px 0 2px 0;">   
+         <div class="col-sm-5 col-xs-6 tital " >Email:</div>
          <div class="col-sm-7">{{user_info[2]}}</div>
-
-
          <hr style="margin:2px 0 2px 0;">
-
-
-      <!-- /.box-body -->
-     
      </div>
-         
-    <!-- /.box -->
-
-     
+ <!-- /.box-body -->         
     </div>
-       
-            
- 
+ <!-- /.box -->
    </div> 
-   
+  <!-- /.panel-body -->
   </div>
-
-  </div><!-- closing col-7-->
-
+ </div><!-- closing col-7-->
   <div class="col-md-3">
      <a href="{{url_for('edit_profile')}}">Change profile</a>
-
-  </div><!---closing col-md-3-> 
-    
-
+  </div><!---closing col-md-3--> 
  </div>
-
+<!-- ending row-->
 </div>
-
-
-
-
-  
-<a onclick="changeItemQuantity( 2,1 ); return false;"
- href="#"> quantity</a>       
-
-function changeItemQuantity( id , num ) {
-    var qty_id = "cart[" + id + "][qty]";
-    var currentVal = parseInt( $(qty_id).value );
-    if ( currentVal != NaN )
-    {
-        $(qty_id).value = currentVal + num;
-        $("products-table-basket").submit();
-    }
-}
-
-
-
-
-
+<!-- ending container-->  
 {% endblock %}

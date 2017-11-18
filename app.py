@@ -1,14 +1,13 @@
 from flask import *
 import sqlite3, hashlib, os
 from werkzeug.utils import secure_filename
-fron DB import conn
-    
+
 app = Flask(__name__)
 app.secret_key = 'random string'
 UPLOAD_FOLDER = 'static'
 ALLOWED_EXTENSIONS = set(['jpeg', 'jpg', 'png', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+  
 def getLogindetails():
     with sqlite3.connect('database.db') as data:
         connection = data.cursor()
@@ -27,17 +26,28 @@ def getLogindetails():
                 session.pop('email')
     return (loggedIn, first_name)    
        
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def valid(email,password):
+    conn = sqlite3.connect('database.db')
+    cur = conn.cursor()
+    cur.execute("select email, password from users where email='"+email+"'")
+    user = cur.fetchall()
+    try:
+        for i in user:
+            if email == i[0] and password == i[1]:
+                return True
+    except:
+        return False
 @app.route("/")
 def root():
     loggedIn, first_name = getLogindetails()
     with sqlite3.connect('database.db') as conn:
-        cur = conn.cursor()
-        
+        cur = conn.cursor()        
         cur.execute('SELECT * FROM categories')            
-        categoryData = cur.fetchall()   
-        print(categoryData)    
-         
+        categoryData = cur.fetchall()              
     return render_template('index.html', loggedIn = loggedIn, first_name = first_name, categoryData=categoryData)
   
 @app.route('/about us')
@@ -55,7 +65,6 @@ def loginform():
         else:
             flash("Invalid credentials")
             return render_template('login.html' )
-
     else:
         return render_template('login.html')
 
@@ -84,7 +93,9 @@ def register():
         phone = request.form['phone']
         if request.files['pic']:
             pic = request.files['pic']
-            filename = pic.filename
+            if not allowed_file(pic.filename):
+                return "wrong fie extension"
+            filename = secure_filename(pic.filename)
             pic.save(os.path.join(app.config['UPLOAD_FOLDER'],filename)) 
             a = "Insert into users (password,email,firstname,lastName,address1,address2,zipcode,city,state,country,phone,image) values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(password,email,firstName,lastName,address1,address2,zipcode,city,state,country,phone,filename)
     
@@ -116,12 +127,11 @@ def profile():
         cur = con.cursor()
         cur.execute("select * from users where email='{}'".format(session['email']))  
         user_info = cur.fetchone()
-        print(user_info[4])
     return render_template('profile.html',loggedIn= loggedIn, first_name=first_name, user_info=user_info)
 
 @app.route('/profile/update',methods=['POST','GET'])
 def edit_profile():
-    if method == "GET":
+    if request.method == "GET":
         loggedIn, first_name = getLogindetails()
         if loggedIn == False:
             return redirect(url_for('loginform'))
@@ -131,7 +141,7 @@ def edit_profile():
                 conn.execute("select * from users where email='{}'".format(session['email']))
                 user_info = conn.fetchone()        
             return render_template('update_profile.html',user_info=user_info, loggedIn=loggedIn, first_name=first_name)
-    elif method == "POST":
+    elif request.method == "POST":
         firstName = request.form['firstName']
         lastName = request.form['lastName']
         address1 = request.form['address1']
@@ -142,6 +152,11 @@ def edit_profile():
         country = request.form['country']
         phone = request.form['phone']
         if request.files['pic']:
+            pic = request.files['pic']
+            if not allowed_file(pic.filename):
+                return "wrong fie extension"
+            filename = secure_filename(pic.filename)
+            pic.save(os.path.join(app.config['UPLOAD_FOLDER'],filename)) 
             update = "update users set (firstname,lastName,address1,address2,zipcode,city,state,country,phone,image) values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(firstName,lastName,address1,address2,zipcode,city,state,country,phone,filename)
         else:
             update = "update users set (firstname,lastName,address1,address2,zipcode,city,state,country,phone) values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(firstName,lastName,address1,address2,zipcode,city,state,country,phone)
@@ -155,6 +170,8 @@ def edit_profile():
                 return render_template('edit_profile.html')
         flash = ("update succesfull")
         return url_for('edit_profile')
+    else:
+        return "something went wrong"
              
         
 
@@ -222,16 +239,7 @@ def category():
         print(products)
     return render_template('category.html', category = category,loggedIn=loggedIn, first_name=first_name, products=products)
 
-def valid(email,password):
-    conn = sqlite3.connect('database.db')
-    cur = conn.cursor()
-    cur.execute("select email, password from users where email='"+email+"'")
-    user = cur.fetchall()
-    try:
-        for i in user:
-            if email == i[0] and password == i[1]:
-                return True
-    except:
-        return False
+
+
 if __name__ == "__main__":
-    app.run(debug=True,port=4000)                    
+    app.run(debug=True,port=4000)                

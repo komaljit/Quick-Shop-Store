@@ -157,19 +157,20 @@ def edit_profile():
                 return "wrong fie extension"
             filename = secure_filename(pic.filename)
             pic.save(os.path.join(app.config['UPLOAD_FOLDER'],filename)) 
-            update = "update users set (firstname,lastName,address1,address2,zipcode,city,state,country,phone,image) values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(firstName,lastName,address1,address2,zipcode,city,state,country,phone,filename)
+            update = "update users set firstname='{}',lastName='{}',address1='{}',address2='{}',zipcode='{}',city='{}',state='{}',country='{}',phone='{}',image='{}' where email='{}'".format(firstName,lastName,address1,address2,zipcode,city,state,country,phone,filename,session['email'])
         else:
-            update = "update users set (firstname,lastName,address1,address2,zipcode,city,state,country,phone) values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(firstName,lastName,address1,address2,zipcode,city,state,country,phone)
+            update = "update users set firstname='{}',lastName='{}',address1='{}',address2='{}',zipcode='{}',city='{}',state='{}',country='{}',phone='{}' where email='{}'".format(firstName,lastName,address1,address2,zipcode,city,state,country,phone,session['email'])
         with sqlite3.connect('database.db') as con:
             cur = con.cursor()
+            print(update)
             try:
-                cur.execute(a)
-                con.commit()                
+                cur.execute(update)
+                con.commit()  
+                flash("update succesfull")
+                return redirect(url_for('edit_profile'))              
             except:
                 flash("Something Went wrong")
-                return render_template('edit_profile.html')
-        flash = ("update succesfull")
-        return url_for('edit_profile')
+                return redirect(url_for('edit_profile'))  
     else:
         return "something went wrong"
              
@@ -242,4 +243,4 @@ def category():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=4000)                
+    app.run(debug=True,port=4000)    

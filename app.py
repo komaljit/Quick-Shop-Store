@@ -100,23 +100,21 @@ def register():
             a = "Insert into users (password,email,firstname,lastName,address1,address2,zipcode,city,state,country,phone,image) values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(password,email,firstName,lastName,address1,address2,zipcode,city,state,country,phone,filename)
     
         else:
-            a = "Insert into users (password,email,firstname,lastName,address1,address2,zipcode,city,state,country,phone) values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(password,email,firstName,lastName,address1,address2,zipcode,city,state,country,phone)
-        print(password,email,firstName,lastName,address1,address2,zipcode,city,state,country,phone) 
-        print(a)
+            a = "Insert into users (password,email,firstname,lastName,address1,address2,zipcode,city,state,country,phone) values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(password,email,firstName,lastName,address1,address2,zipcode,city,state,country,phone)   
         with sqlite3.connect('database.db') as con:
             cur = con.cursor()
+            print(a)
             try:                
                 cur.execute(a)
                 con.commit()
+                return redirect('/login')
             except:
                 con.rollback()
                 flash("Something Went wrong")
-                return render_template('register.html')
+                print(flash)
+                return redirect(url_for('register'))
         
-        return redirect('/login')
        
-    else:
-        return render_template('register.html')
 
 @app.route('/profile')
 def profile():
@@ -214,19 +212,11 @@ def product():
 
 @app.route('/cart')
 def Cart ():
-    loggedIn, first_name = getLogindetails()
-    if not loggedIn:
-        return redirect(url_for('loginform'))
-    else:
-        with sqlite3.connect('database.db') as conn:
-            c = conn.cursor()
-            conn.execute("select name from products")
+    with sqlite3.connect('database.db') as conn:
+        c = conn.cursor()
+        conn.execute("select name from products")
     return "Admin is working on that page"
 
-
-@app.route('/orders')
-def Orders():
-    return "sonn that page will be availbale"
 
 @app.route('/shop_by_category')
 def category():
@@ -243,4 +233,4 @@ def category():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=4000)    
+    app.run(debug=True,port=4000)                

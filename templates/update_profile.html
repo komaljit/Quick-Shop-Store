@@ -9,9 +9,9 @@
       <div class="col-md-3">
        <div class="text-center">
           {% if user_info[12] %}           
-            <img alt="User Pic" src="{{url_for('static',filename="user_info[12]")}}" id="profile-image1" class="img-circle img-responsive">          
+            <img alt="User Pic" src="{{url_for('static',filename=user_info[12])}}" id="profile-image1" class="img-circle img-responsive" style="width:150px;height:150px;">          
           {% else %}
-            <img alt="User Pic" src={{url_for('static',filename="download.jpg")}} id="profile-image1" class="img-circle img-responsive">
+            <img alt="User Pic" src={{url_for('static',filename="download.jpg")}} id="profile-image1" class="img-circle img-responsive" style="width:150px;height:150px;">
           {% endif %} 
           <h6>Upload a diiferent picture</h6>
           <input type="file" class="form-control" name="pic"></div>

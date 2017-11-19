@@ -1,4 +1,3 @@
-
 {% extends "header.html" %}
 {% block body %}	
  <div class="container" style="padding-top:20px;">
@@ -25,13 +24,13 @@
     </label>
   </div>
   <button type="submit" class="btn btn-primary">Sign In</button>
-  {% with messages = get_flashed_messages() %}
+  <b> {% with messages = get_flashed_messages() %}
           {% if messages %}         
             {% for i in messages %}
                 {{i}}
             {% endfor %} 
           {% endif %}
-  {% endwith %}
+  {% endwith %} </b>
 </form>
 </div>
 </div>

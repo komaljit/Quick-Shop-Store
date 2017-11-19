@@ -3,7 +3,7 @@
 <div class="container">
      <h1>Edit Profile</h1>
      <hr>
-<form method='POST' class="from-horizontal"enctype=multipart/form-data> 
+<form method='POST' class="from-horizontal" enctype=multipart/form-data> 
      <div class="row">      
       <!-- left column -->
       <div class="col-md-3">
@@ -20,7 +20,13 @@
      <!-- right coulmn for enteries --> 
     <div class="col-md-9 personal-info">
        <h3>Personal Info</h3>
-      
+       <b>{% with messages = get_flashed_messages() %}
+          {% if messages %}         
+            {% for i in messages %}
+                {{i}}
+            {% endfor %} 
+          {% endif %}
+       {% endwith %}</b>
         <div class="form-group">
         <label class="col-lg-3 control-label">First name:</label>
              <div class="col-lg-8">

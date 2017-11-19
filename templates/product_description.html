@@ -19,7 +19,7 @@
       <span class="input-group-btn">
         <button class="btn btn-secondary" type="button" id="Decrement" onclick=change(this)>-</button>
       </span>
-      <input type="text" class="form-control" id="quantity" value=1 name="quantity">
+      <input type="text" class="form-control" id="quantity" value=1 name="quantity" disabled>
       <span class="input-group-btn">
         <button class="btn btn-secondary" type="button" id="Increment" onclick=change(this)>+</button>
       </span>
@@ -28,25 +28,26 @@
    </div>
 </div>
 <script>
-  function added(){
-  document.getElementById("cart_btn").value = "Added";
-}
-</script>
-
- <script>
-     function change(elem){
-          var c = elem.id;
-          var a = document.getElementById("quantity").value;
-          if(c == "Decrement"){         
-        document.getElementById("quantity").value = +a - 1 ; 
+    function added(){
+       document.getElementById("cart_btn").value = "Added";
       }
-       else{
-        document.getElementById("quantity").value = +a + 1 ; 
-      } 
-
-}
-    
- </script>
+  
+     function change(elem){
+         var c = elem.id;
+         var a = document.getElementById("quantity").value;
+         if(c == "Decrement" && a > 1){         
+              document.getElementById("quantity").value = +a - 1 ; 
+             }
+         else if(c == "Increment" && a < 5) {
+            document.getElementById("quantity").value = +a + 1 ; 
+         }
+         else{
+           alert("Invalid quantity")
+         } 
+ 
+      }
+     
+  </script>
 
 
 {% endblock %}

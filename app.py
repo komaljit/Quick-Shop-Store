@@ -120,7 +120,7 @@ def register():
 def profile():
     loggedIn, first_name = getLogindetails()
     if loggedIn == False:
-        return redirect(url_for('login'))
+        return redirect(url_for('loginform'))
     with sqlite3.connect('database.db') as con:
         cur = con.cursor()
         cur.execute("select * from users where email='{}'".format(session['email']))  
